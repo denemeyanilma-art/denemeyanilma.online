@@ -1,35 +1,469 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deneme Yanılma | GIF & Sticker Art</title>
+  <title>Deneme Yanılma Studio | Motion Design & Digital Visual Assets</title>
+  <meta name="description" content="Official portfolio of Deneme Yanılma Studio. Specializing in 2D/3D motion graphics, transparent social media stickers, and looping vector animations.">
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #0d0d0d; color: #fff; margin: 0; padding: 40px 20px; text-align: center; }
-    .container { max-width: 600px; margin: 0 auto; }
-    h1 { font-size: 2.2rem; margin-bottom: 8px; color: #6157ff; }
-    p { color: #aaa; line-height: 1.6; }
-    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin: 30px 0; }
-    .card { background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #333; }
-    .footer { margin-top: 40px; font-size: 0.9rem; color: #666; border-top: 1px solid #222; padding-top: 20px; }
-    a { color: #6157ff; text-decoration: none; }
+    :root {
+      --bg: #09090b;
+      --card-bg: #131316;
+      --card-border: #222226;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --text-main: #f4f4f5;
+      --text-muted: #9ca3af;
+      --text-dim: #52525b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.65;
+      padding: 0;
+      margin: 0;
+    }
+    .wrapper {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    /* Navigation */
+    nav {
+      border-bottom: 1px solid var(--card-border);
+      padding: 22px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(9, 9, 11, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .brand-logo span { color: var(--accent); }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    /* Hero */
+    header.hero {
+      padding: 90px 0 60px 0;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #a5b4fc;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    h1 {
+      font-size: 3.2rem;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+    }
+    p.lead {
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      max-width: 720px;
+      margin: 0 auto 35px auto;
+      font-weight: 400;
+    }
+
+    /* Section Headings */
+    .section-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Portfolio Gallery */
+    section { padding: 60px 0; border-bottom: 1px solid var(--card-border); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 24px;
+      border: 1px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #3f3f46;
+    }
+    .preview-box {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .card img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .card h3 { font-size: 1.1rem; margin-bottom: 6px; font-weight: 600; }
+    .card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.4; }
+    .asset-tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      background: #27272a;
+      border-radius: 4px;
+      color: #d4d4d8;
+    }
+
+    /* Process Section */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+    .process-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .step-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .process-box h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .process-box p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* Quality / Specs Table */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+    .specs-table th, .specs-table td {
+      padding: 16px 20px;
+      text-align: left;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .specs-table th {
+      background: #18181b;
+      color: #fff;
+      font-weight: 600;
+    }
+    .specs-table td { color: var(--text-muted); }
+    .specs-table tr:last-child td { border-bottom: none; }
+
+    /* FAQ Section */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+    .faq-item h4 { font-size: 1.05rem; margin-bottom: 8px; color: #fff; }
+    .faq-item p { font-size: 0.92rem; color: var(--text-muted); margin: 0; }
+
+    /* Footer */
+    footer {
+      padding: 60px 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+    .footer-email {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .footer-links a {
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+    }
+    .footer-links a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      p.lead { font-size: 1.05rem; }
+      nav .nav-links { display: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Deneme Yanılma</h1>
-    <p>Dijital sticker, GIF ve yaratıcı görsel içerik projesi. Sosyal medya platformları için özgün animasyonlar üretiyoruz.</p>
 
-    <div class="gallery">
-      <div class="card"><p>✨ Sticker 1</p></div>
-      <div class="card"><p>🔥 Sticker 2</p></div>
-      <div class="card"><p>🚀 Sticker 3</p></div>
+  <!-- Navigation -->
+  <nav>
+    <div class="wrapper nav-container">
+      <a href="#" class="brand-logo">DENEME YANILMA <span>STUDIO</span></a>
+      <div class="nav-links">
+        <a href="#portfolio">Assets</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#standards">Technical Standards</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
+  </nav>
 
-    <div class="footer">
-      <p>İletişim: <a href="mailto:hello@denemeyanilma.online">hello@denemeyanilma.online</a></p>
-      <p>© 2026 Deneme Yanılma. Tüm hakları saklıdır.</p>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="wrapper">
+      <div class="badge">Verified Creator & Motion Asset Library</div>
+      <h1>Original Motion Design & Visual Digital Assets</h1>
+      <p class="lead">
+        Deneme Yanılma Studio crafts high-performance 2D looping animations, transparent reaction stickers, and micro-interactions optimized for social messaging and content creators.
+      </p>
     </div>
-  </div>
+  </header>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio">
+    <div class="wrapper">
+      <div class="section-header">
+        <h2>Curated Collection & Sticker Assets</h2>
+        <p>Explore our recent original creations tailored for Instagram Stories, TikTok, and messaging ecosystems.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="preview-box">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1NHN4b3Z1dG56dG55bDJ1M2FmYjcxMjF3OGNtdXZ1ZzVpYmJtZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3o7TKSjRrfIPjeiVyM/giphy.gif" alt="Geometric Loop">
+          </div>
+          <h3>Infinite Geometry</h3>
+          <p>Seamless kinetic animation exploring recursive shapes and rhythmic timing.</p>
+          <span class="asset-tag">Looping GIF • 60 FPS</span>
+        </div>
+
+        <div class="card">
+          <div class="preview-box">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjNyc3JkMGkxa3h6OHY0dG96M2ZydHBxdWlhb2dva3Bjd3Fsc2J2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/l0HlTy9x8FxBtVCAE/giphy.gif" alt="Dynamic Sparkle">
+          </div>
+          <h3>Kinetic Highlight</h3>
+          <p>Transparent vector sparkle effect designed for contextual reaction overlays.</p>
+          <span class="asset-tag">Transparent Sticker • Alpha Channel</span>
+        </div>
+
+        <div class="card">
+          <div class="preview-box">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmZoaHRpMDlsYTN2c2s4Y2V6M3R2MW04YmlzMWVraHNmd3Bkb295OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3o6Zt481isNVuQI1l6/giphy.gif" alt="Pulse Accent">
+          </div>
+          <h3>Attention Waveform</h3>
+          <p>Organic pulsing wave asset constructed with mathematical precision easing curves.</p>
+          <span class="asset-tag">Vector Animation • 1080x1080</span>
+        </div>
+
+        <div class="card">
+          <div class="preview-box">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGpudjV3MnphbXV6MnJ5bWc5eG1jM24xdHkzaDFyNGhhb25hNHB4MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/l3q2K5jinAlChoCLS/giphy.gif" alt="Morphing Shapes">
+          </div>
+          <h3>Morphing Glyph</h3>
+          <p>Fluid character-line morphing animation built for expressive micro-interactions.</p>
+          <span class="asset-tag">Seamless Loop • Dynamic Easing</span>
+        </div>
+
+        <div class="card">
+          <div class="preview-box">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGNidXZtNWtwcGRhMHlpaDF3OWtydWVxM2pkdWxmbHRra24yYnI2ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3oKIPnAiaMCws8nOsE/giphy.gif" alt="Retro Grid">
+          </div>
+          <h3>Retro Cyber Grid</h3>
+          <p>Vibrant 80s-inspired procedural mesh loop with clean alpha background channels.</p>
+          <span class="asset-tag">Retro Aesthetic • Sticker</span>
+        </div>
+
+        <div class="card">
+          <div class="preview-box">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd245MHFtcW9ndDRpNDh0azB6NWtzcW41azQxaDFsczVtdGdpYXNvaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/26AHONQyp1uz480CU/giphy.gif" alt="Burst Reaction">
+          </div>
+          <h3>Celebration Burst</h3>
+          <p>High-energy visual accent optimized for mobile messaging celebrations and stories.</p>
+          <span class="asset-tag">Explosion FX • Alpha Channel</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow / Creative Process -->
+  <section id="workflow">
+    <div class="wrapper">
+      <div class="section-header">
+        <h2>Production Pipeline</h2>
+        <p>Our systematic methodology ensures every asset meets strict quality standards across all social platforms.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-box">
+          <div class="step-num">01</div>
+          <h3>Concept & Vector Sketching</h3>
+          <p>Every asset originates as custom vector geometry in Illustrator, focusing on clean silhouette read and visual clarity at small mobile sizes.</p>
+        </div>
+        <div class="process-box">
+          <div class="step-num">02</div>
+          <h3>Keyframing & Easing</h3>
+          <p>Motion graphs and easing curves are meticulously adjusted in After Effects to guarantee organic weight, bounce, and rhythm.</p>
+        </div>
+        <div class="process-box">
+          <div class="step-num">03</div>
+          <h3>Seamless Loop Engineering</h3>
+          <p>First and final frames are harmonized mathematically to deliver an imperceptible loop seam without stutter or frame drop.</p>
+        </div>
+        <div class="process-box">
+          <div class="step-num">04</div>
+          <h3>Alpha Channel Compression</h3>
+          <p>Exported with clean matte edges, preventing halo artifacts on both dark and light user interface backgrounds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Standards -->
+  <section id="standards">
+    <div class="wrapper">
+      <div class="section-header">
+        <h2>Technical & Deliverable Specifications</h2>
+        <p>Engineered to comply fully with GIPHY, Meta, and modern social ecosystem ingestion criteria.</p>
+      </div>
+
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Stickers (Transparent)</th>
+            <th>Standard Looping GIFs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Aspect Ratio</strong></td>
+            <td>1:1 Square (Recommended)</td>
+            <td>1:1 or 16:9 Landscape</td>
+          </tr>
+          <tr>
+            <td><strong>Alpha / Background</strong></td>
+            <td>Strictly Transparent (Min 20% transparent pixels)</td>
+            <td>Full Canvas / Rich Background</td>
+          </tr>
+          <tr>
+            <td><strong>Framerate</strong></td>
+            <td>30 - 60 FPS</td>
+            <td>24 - 30 FPS</td>
+          </tr>
+          <tr>
+            <td><strong>Color Mode</strong></td>
+            <td>sRGB, 256 Colors Adaptive Palette</td>
+            <td>sRGB, Optimized Dithering</td>
+          </tr>
+          <tr>
+            <td><strong>Loop Setting</strong></td>
+            <td>Set to Loop Forever (Loop Count = 0)</td>
+            <td>Set to Loop Forever (Loop Count = 0)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <div class="wrapper">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+        <p>Information regarding content ownership, usage, and artist verification.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <h4>Are all artworks on this domain 100% original?</h4>
+          <p>Yes. Every sticker, animation, and graphic presented here is designed from scratch by Deneme Yanılma Studio. We do not utilize third-party copyrighted footage, movie cuts, or ripped television material.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Where can these assets be utilized?</h4>
+          <p>Once integrated via the official GIPHY library, all stickers and clips are searchable across Instagram Stories, TikTok, WhatsApp, Telegram, and Discord.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What software suite is utilized in production?</h4>
+          <p>Our standard production pipeline relies on Adobe After Effects, Adobe Illustrator, and specialized color table quantizers to produce optimized GIF/WebP outputs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Footer -->
+  <footer id="contact">
+    <div class="wrapper">
+      <p style="margin-bottom: 8px;">Direct Inquiries & Collaboration</p>
+      <div class="footer-email">contact@denemeyanilma.online</div>
+      <div class="footer-links">
+        <a href="https://instagram.com" target="_blank">Instagram</a>
+        <a href="https://behance.net" target="_blank">Behance</a>
+        <a href="https://giphy.com" target="_blank">GIPHY Official Channel</a>
+      </div>
+      <p style="margin-top: 30px; font-size: 0.8rem;">&copy; Deneme Yanılma Studio. All rights reserved. Original motion design assets.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
